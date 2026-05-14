@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Hidradenitis Suppurativa | Bekir Atik",
   description:
-    "Hidradenitis suppurativa hakkında bilgilendirici, dönüşüm odaklı ve tek sayfalık landing page.",
+    "Hidradenitis Suppurativa hakkında bilgilendirici, dönüşüm odaklı ve tek sayfalık açılış sayfası.",
 };
 
 export default function RootLayout({

@@ -41,6 +41,7 @@ body {
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 @keyframes review-scroll-left {
@@ -59,9 +60,27 @@ body {
   animation: review-scroll-left 34s linear infinite;
 }
 
+@keyframes short-scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.short-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: short-scroll-left 72s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .review-marquee,
-  .review-marquee * {
+  .short-marquee,
+  .review-marquee *,
+  .short-marquee * {
     animation: none;
   }
 }

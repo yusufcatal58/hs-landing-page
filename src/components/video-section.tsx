@@ -10,9 +10,10 @@ type VideoCard = {
 
 type VideoSectionProps = {
   cards: VideoCard[];
+  shorts: VideoCard[];
 };
 
-export function VideoSection({ cards }: VideoSectionProps) {
+export function VideoSection({ cards, shorts }: VideoSectionProps) {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -26,7 +27,9 @@ export function VideoSection({ cards }: VideoSectionProps) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  const activeCard = cards.find((card) => card.videoId === activeVideoId);
+  const activeCard = [...cards, ...shorts].find(
+    (card) => card.videoId === activeVideoId,
+  );
 
   return (
     <>
@@ -37,10 +40,10 @@ export function VideoSection({ cards }: VideoSectionProps) {
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
-              Video anlatımlar
+              Hasta tecrübeleri
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              YouTube videoları
+              Hasta hikayeleri
             </h2>
           </div>
           <a
@@ -52,7 +55,7 @@ export function VideoSection({ cards }: VideoSectionProps) {
             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-white">
               ▶
             </span>
-            Kanalı aç
+            Kanala git
           </a>
         </div>
 
@@ -84,6 +87,52 @@ export function VideoSection({ cards }: VideoSectionProps) {
               </div>
             </button>
           ))}
+        </div>
+
+        <div className="mt-10 flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+              Soru cevaplar
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
+              Kısa videolarla hızlı yanıtlar
+            </h3>
+          </div>
+          <span className="hidden rounded-full border border-sky-200 bg-white px-3 py-1 text-xs font-semibold text-sky-700 md:inline-flex">
+            Kısa videolar
+          </span>
+        </div>
+
+        <div className="mt-6 overflow-hidden rounded-[1.75rem]">
+          <div className="short-marquee gap-4 py-2">
+            {[...shorts, ...shorts].map((card, index) => (
+              <button
+                key={`${card.videoId}-${index}`}
+                type="button"
+                onClick={() => setActiveVideoId(card.videoId)}
+                className="group mr-4 w-[260px] shrink-0 overflow-hidden rounded-[1.75rem] border border-sky-100 bg-white text-left shadow-[0_12px_32px_rgba(59,130,246,0.09)] transition hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(59,130,246,0.14)]"
+              >
+                <div className="relative aspect-[9/16] overflow-hidden bg-slate-200">
+                  <Image
+                    src={`https://i.ytimg.com/vi/${card.videoId}/hqdefault.jpg`}
+                    alt={card.title}
+                    fill
+                    unoptimized
+                    sizes="260px"
+                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.08),rgba(15,23,42,0.34))]" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="rounded-2xl bg-slate-950/75 p-4 backdrop-blur-sm">
+                      <p className="text-sm font-semibold leading-6 text-white">
+                        {card.title}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </article>
 
