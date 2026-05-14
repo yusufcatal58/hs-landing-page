@@ -128,8 +128,8 @@ const happyPatientImages = [
 const guideFlowSteps = [
   {
     step: "1",
-    title: "Folikül tıkanır",
-    text: "Kıl folikülü tıkanır ve inflamasyon başlar.",
+    title: "Ter bezlerinin tıkanması",
+    text: "Ter bezleri tıkanır ve inflamasyon başlar.",
   },
   {
     step: "2",
@@ -174,33 +174,6 @@ const hurleyCards = [
     tone: "from-rose-50 to-white",
     accent: "text-rose-700",
     points: ["Yaygın hastalık", "Birbirine bağlı tüneller", "Belirgin skar ve inflamasyon"],
-  },
-];
-
-const guideComparisonRows = [
-  {
-    feature: "Tekrarlama",
-    hs: "Sık ve aynı bölgede geri dönebilir",
-    acne: "Daha yüzeyel ve değişken",
-    infection: "Geçici olabilir",
-  },
-  {
-    feature: "Yerleşim",
-    hs: "Sürtünmeye açık kıvrım bölgeleri",
-    acne: "Yüz, sırt, gövde",
-    infection: "Her yerde olabilir",
-  },
-  {
-    feature: "Tünel / sinüs",
-    hs: "Evet, ileri evrede görülebilir",
-    acne: "Hayır",
-    infection: "Tipik değil",
-  },
-  {
-    feature: "İz dokusu",
-    hs: "Belirgin olabilir",
-    acne: "Değişken",
-    infection: "Atak sonrası farklılık gösterebilir",
   },
 ];
 
@@ -568,88 +541,6 @@ export default function Home() {
                   </article>
                 </div>
 
-                <div className="overflow-hidden rounded-[2rem] border border-sky-200 bg-white shadow-[0_18px_48px_rgba(14,116,144,0.12)] ring-1 ring-sky-100/70">
-                  <div className="flex flex-col gap-3 border-b border-sky-200 bg-gradient-to-r from-sky-50 via-white to-cyan-50 px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="text-sm font-black uppercase tracking-[0.24em] text-sky-700">
-                        Hidradenitis Suppurativa akne ya da enfeksiyonla aynı mı?
-                      </p>
-                      <h3 className="mt-2 text-xl font-semibold text-slate-950">
-                        Kısa ayırıcı tablo
-                      </h3>
-                    </div>
-                    <span className="w-fit rounded-full border border-sky-300 bg-white px-4 py-2 text-xs font-bold text-sky-700 shadow-sm">
-                      Klinik fark
-                    </span>
-                  </div>
-
-                  <div className="grid gap-3 p-4 md:hidden">
-                    {guideComparisonRows.map((row) => (
-                      <article
-                        key={row.feature}
-                        className="rounded-[1.35rem] border border-sky-100 bg-white p-4 shadow-sm"
-                      >
-                        <p className="text-sm font-semibold text-slate-950">
-                          {row.feature}
-                        </p>
-                        <dl className="mt-3 space-y-3 text-sm leading-6">
-                          <div className="rounded-[1rem] border border-sky-200 bg-sky-50 p-3">
-                            <dt className="font-semibold uppercase tracking-[0.14em] text-sky-700">
-                              Hidradenitis Suppurativa
-                            </dt>
-                            <dd className="mt-1 font-medium text-slate-800">{row.hs}</dd>
-                          </div>
-                          <div>
-                            <dt className="font-semibold uppercase tracking-[0.14em] text-slate-500">
-                              Akne
-                            </dt>
-                            <dd className="mt-1 text-slate-700">{row.acne}</dd>
-                          </div>
-                          <div>
-                            <dt className="font-semibold uppercase tracking-[0.14em] text-slate-500">
-                              Enfeksiyon
-                            </dt>
-                            <dd className="mt-1 text-slate-700">{row.infection}</dd>
-                          </div>
-                        </dl>
-                      </article>
-                    ))}
-                  </div>
-
-                  <div className="hidden overflow-x-auto md:block">
-                    <table className="min-w-[760px] w-full border-separate border-spacing-0">
-                      <thead>
-                        <tr className="bg-sky-50/70 text-left text-xs uppercase tracking-[0.18em] text-slate-500">
-                          <th className="px-5 py-4 font-semibold">Özellik</th>
-                          <th className="border-x border-sky-100 bg-sky-100/70 px-5 py-4 font-black text-sky-800">Hidradenitis Suppurativa</th>
-                          <th className="px-5 py-4 font-semibold">Akne</th>
-                          <th className="px-5 py-4 font-semibold">Enfeksiyon</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {guideComparisonRows.map((row, index) => (
-                          <tr
-                            key={row.feature}
-                            className={index % 2 === 0 ? "bg-slate-50/80" : "bg-white"}
-                          >
-                            <td className="border-t border-sky-100 px-5 py-4 text-sm font-semibold text-slate-950">
-                              {row.feature}
-                            </td>
-                            <td className="border-x border-t border-sky-100 bg-sky-50/60 px-5 py-4 text-sm font-medium leading-6 text-slate-800">
-                              {row.hs}
-                            </td>
-                            <td className="border-t border-sky-100 px-5 py-4 text-sm leading-6 text-slate-700">
-                              {row.acne}
-                            </td>
-                            <td className="border-t border-sky-100 px-5 py-4 text-sm leading-6 text-slate-700">
-                              {row.infection}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
               </div>
             </div>
           </article>
@@ -721,12 +612,26 @@ export default function Home() {
               Erken dönemde medikal takip, ileri dönemde cerrahi seçenekler
               konuşulabilir.
             </h2>
-            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-700">
-              Kaynak sayfalarda erken tanıda ilaç tedavilerinin ilerlemeyi
-              yavaşlatabildiği, ileri ve yaygın olgularda ise cerrahi yaklaşımın
-              güçlü bir seçenek olabildiği vurgulanıyor. Biz de bu alanı güven
-              veren ama abartısız bir dil ile kuruyoruz.
-            </p>
+            <div className="mt-5 rounded-[1.5rem] border border-sky-100 bg-white/85 p-5 shadow-[0_12px_30px_rgba(59,130,246,0.06)] sm:p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                Klinik çerçeve
+              </p>
+              <p className="mt-3 max-w-3xl text-lg font-semibold leading-8 text-slate-900">
+                Erken evrelerde ilaç tedavisi faydalı olabildiği gibi ilerleyen
+                dönemlerde cerrahi tedavi gereklidir.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
+                  Ağrı kontrolü
+                </span>
+                <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
+                  Atak yönetimi
+                </span>
+                <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
+                  Cerrahi planlama
+                </span>
+              </div>
+            </div>
 
             <div className="mt-6 grid gap-4 lg:grid-cols-3">
               {treatmentCards.map((card) => (
