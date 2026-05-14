@@ -1,6 +1,9 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 function escapeHtml(value: string) {
   return value
     .replace(/&/g, "&amp;")
@@ -58,10 +61,19 @@ export async function POST(request: Request) {
         user: smtpUser,
         pass: smtpPass,
       },
+      authMethod: "LOGIN",
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
+      requireTLS: true,
+      tls: {
+        minVersion: "TLSv1.2",
+        rejectUnauthorized: false,
+      },
     });
 
     await transporter.sendMail({
-      from: `Bekir Atik <${smtpFrom}>`,
+      from: smtpFrom,
       to: destinationEmail,
       replyTo: payload.email || smtpFrom,
       subject,
@@ -74,7 +86,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Bilinmeyen hata";
+    console.error("Contact form send failed", error);
+    const message =
+      error instanceof Error ? error.message : "Bilinmeyen hata";
     return NextResponse.json({ message }, { status: 500 });
   }
 }
