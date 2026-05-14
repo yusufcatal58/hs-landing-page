@@ -3,7 +3,6 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 
-const DESTINATION_EMAIL = "info@bekiratik.com";
 const AREA_OPTIONS = [
   "Koltuk altı",
   "Kasık",
@@ -22,6 +21,8 @@ export function ContactForm() {
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [isAreaPickerOpen, setIsAreaPickerOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [submitState, setSubmitState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [feedback, setFeedback] = useState("");
 
   function toggleArea(area: string) {
     setSelectedAreas((current) =>
@@ -31,24 +32,51 @@ export function ContactForm() {
     );
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const subject = encodeURIComponent(
-      "Hidradenitis Suppurativa - Yeni iletişim formu",
-    );
-    const body = encodeURIComponent(
-      [
-      `Ad Soyad: ${name || "-"}`,
-      `Telefon: ${phone || "-"}`,
-      `Mail: ${email || "-"}`,
-      `Kaç yıldır yaşıyor: ${duration || "-"}`,
-      `Vücutta hangi bölgelerde: ${selectedAreas.join(", ") || "-"}`,
-      `Açıklama: ${message || "-"}`,
-      ].join("\n"),
-    );
+    setSubmitState("sending");
+    setFeedback("");
 
-    window.location.href = `mailto:${DESTINATION_EMAIL}?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          duration,
+          areas: selectedAreas,
+          message,
+        }),
+      });
+
+      const data: { message?: string } = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.message || "Form gönderilemedi.");
+      }
+
+      setSubmitState("success");
+      setFeedback("Formunuz bize ulaştı. En kısa sürede dönüş yapılacak.");
+      setName("");
+      setPhone("");
+      setEmail("");
+      setDuration("");
+      setSelectedAreas([]);
+      setMessage("");
+      setIsAreaPickerOpen(false);
+    } catch (error) {
+      setSubmitState("error");
+      setFeedback(
+        error instanceof Error
+          ? error.message
+          : "Form gönderilemedi. Lütfen daha sonra tekrar deneyin.",
+      );
+    }
   }
 
   return (
@@ -176,9 +204,10 @@ export function ContactForm() {
       <div className="flex flex-col gap-3 sm:flex-row">
         <button
           type="submit"
+          disabled={submitState === "sending"}
           className="inline-flex items-center justify-center rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-600"
         >
-          Gönder
+          {submitState === "sending" ? "Gönderiliyor..." : "Gönder"}
         </button>
         <a
           href="tel:+905324615997"
@@ -187,6 +216,14 @@ export function ContactForm() {
           Direkt ara
         </a>
       </div>
+
+      {feedback ? (
+        <p
+          className={`text-sm font-medium ${submitState === "success" ? "text-emerald-700" : "text-rose-700"}`}
+        >
+          {feedback}
+        </p>
+      ) : null}
     </form>
   );
 }
