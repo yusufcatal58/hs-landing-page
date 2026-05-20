@@ -13,6 +13,68 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
+function formatAreas(areas: string[] | undefined) {
+  return Array.isArray(areas) && areas.length > 0 ? areas.join(", ") : "-";
+}
+
+async function sendToMezesoft(payload: {
+  name?: string;
+  phone?: string;
+  email?: string;
+  duration?: string;
+  areas?: string[];
+  message?: string;
+}) {
+  const apiUrl =
+    process.env.MEZESOFT_API_URL || "https://medical.mezesoft.com/api/form";
+  const landingId = Number(process.env.MEZESOFT_LANDING_ID || "180");
+  const landingName =
+    process.env.MEZESOFT_LANDING_NAME || "Hidradenitis Suppurativa-Yusuf";
+  const landingUrl =
+    process.env.MEZESOFT_LANDING_URL ||
+    "https://hidradenitis-suppurativa.bekiratik.com/";
+  const token = process.env.MEZESOFT_TOKEN || "";
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(token ? { "X-Token": token } : {}),
+        ...(token ? { "X-Landing-Token": token } : {}),
+      },
+      body: JSON.stringify({
+        name: payload.name || "",
+        phone: payload.phone || "",
+        email: payload.email || "",
+        duration: payload.duration || "",
+        areas: formatAreas(payload.areas),
+        areas_list: Array.isArray(payload.areas) ? payload.areas : [],
+        message: payload.message || "",
+        landing_id: landingId,
+        landing_name: landingName,
+        landing_url: landingUrl,
+        token: token || undefined,
+      }),
+      signal: controller.signal,
+    });
+
+    const responseText = await response.text();
+
+    if (!response.ok) {
+      throw new Error(
+        `Mezesoft CRM yanıt vermedi (${response.status}). ${responseText}`,
+      );
+    }
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as {
@@ -32,15 +94,7 @@ export async function POST(request: Request) {
     const destinationEmail =
       process.env.CONTACT_TO_EMAIL || "info@bekiratik.com";
 
-    if (!smtpHost || !smtpUser || !smtpPass || !smtpFrom) {
-      return NextResponse.json(
-        {
-          message:
-            "Mail ayarı eksik. SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS ve SMTP_FROM tanımlanmalı.",
-        },
-        { status: 500 },
-      );
-    }
+    await sendToMezesoft(payload);
 
     const areas = Array.isArray(payload.areas) ? payload.areas : [];
     const subject = "Hidradenitis Suppurativa - Yeni iletişim formu";
@@ -53,36 +107,38 @@ export async function POST(request: Request) {
       `Açıklama: ${payload.message || "-"}`,
     ].join("\n");
 
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-      authMethod: "LOGIN",
-      connectionTimeout: 10000,
-      greetingTimeout: 10000,
-      socketTimeout: 10000,
-      requireTLS: true,
-      tls: {
-        minVersion: "TLSv1.2",
-        rejectUnauthorized: false,
-      },
-    });
+    if (smtpHost && smtpUser && smtpPass && smtpFrom) {
+      const transporter = nodemailer.createTransport({
+        host: smtpHost,
+        port: smtpPort,
+        secure: smtpPort === 465,
+        auth: {
+          user: smtpUser,
+          pass: smtpPass,
+        },
+        authMethod: "LOGIN",
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 10000,
+        requireTLS: true,
+        tls: {
+          minVersion: "TLSv1.2",
+          rejectUnauthorized: false,
+        },
+      });
 
-    await transporter.sendMail({
-      from: smtpFrom,
-      to: destinationEmail,
-      replyTo: payload.email || smtpFrom,
-      subject,
-      text,
-      html: text
-        .split("\n")
-        .map((line) => `<p>${escapeHtml(line)}</p>`)
-        .join(""),
-    });
+      await transporter.sendMail({
+        from: smtpFrom,
+        to: destinationEmail,
+        replyTo: payload.email || smtpFrom,
+        subject,
+        text,
+        html: text
+          .split("\n")
+          .map((line) => `<p>${escapeHtml(line)}</p>`)
+          .join(""),
+      });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
