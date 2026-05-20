@@ -28,39 +28,67 @@ const treatmentCards = [
 
 const videoCards = [
   {
-    title: "6 yıl acı çekti, şimdi çok mutlu",
-    text: "Ameliyat sonrası hasta hikayesi.",
-    href: "https://www.youtube.com/watch?v=oMiq6k3zV6M",
+    title: "Hidradenitis Suppurativa ve Beslenme İlişkisi | Süt Ürünleri Tetikliyor mu?",
+    videoId: "3Aril8rIe9A",
+  },
+  {
+    title: "Artık Okula İsteyerek Gidiyorum | HS Hastasının Gerçek Hikayesi",
+    videoId: "tSKRAVkez88",
+  },
+  {
+    title: "“İnsan Görmek İstemiyordum” | HS Hastasının Ameliyat Sonrası Değişimi",
+    videoId: "U0Dd_7dE3y8",
+  },
+  {
+    title: "İlk Defa 7 Aydır İlaç Kullanmıyorum” | HS Tedavisi Sonrası Değişim",
+    videoId: "nH1KwQyWKag",
+  },
+  {
+    title: "“Arabaya Bile Oturamıyordum” | HS Hastasının Ameliyat Sonrası İyileşme Hikayesi",
+    videoId: "Oobqr8RWPwo",
+  },
+  {
+    title: "6 Yıl Acı Çekti, Şimdi Çok Mutlu | Hidradenitis Suppurativa Ameliyatı Sonrası Şevval’in Hikâyesi",
     videoId: "oMiq6k3zV6M",
   },
   {
-    title: "Bitmeyen ağrılardan kurtuldu",
-    text: "Gerçek hasta yorumu ve tedavi süreci.",
-    href: "https://www.youtube.com/watch?v=16lBh53XDA8",
+    title: "Bitmeyen Ağrılardan Kurtuldu: Hidradenitis Suppurativa Ameliyatı Sonrası Gerçek Hasta Yorumu",
     videoId: "16lBh53XDA8",
   },
   {
-    title: "Hidradenitis Suppurativa için çözüm mümkün",
-    text: "Hastalığın tedavi yaklaşımını anlatan video.",
-    href: "https://www.youtube.com/watch?v=NhRPMghHapQ",
+    title: "Hidradenitis Suppurativa Ameliyatı – Hastamız Anlatıyor #hidradenitissuppurativa",
+    videoId: "5V8UWcTzPEI",
+  },
+  {
+    title: "“Hayatımdan Vazgeçmiştim” – İsrafil Bey’in HS Ameliyatı Sonrası Yeni Hayatı #hidradenitissuppurativa",
+    videoId: "fQU_RauIEBU",
+  },
+  {
+    title: "HS ile 5 Yıllık Mücadele: Estonya’dan Mr. Şahin’in Ameliyat Sonrası Hikâyesi",
+    videoId: "XxO1M4OjrWo",
+  },
+  {
+    title: "Ozan Bey’in Hidradenitis Suppurativa Tedavi Yolculuğu - Hidradenitis Suppurativa Treatment Journey",
+    videoId: "tn4FaDbzcYw",
+  },
+  {
+    title: "Hidradenitis Suppurativa ile Mücadele: Belirtiler, Tedavi ve Destek Yöntemleri",
+    videoId: "hPwxl9pisFs",
+  },
+  {
+    title: "Hidradenitis Suppurativa - Çaresi Mümkün",
     videoId: "NhRPMghHapQ",
   },
   {
-    title: "Hidradenitis Suppurativa tedavisinde cerrahi yaklaşım",
-    text: "Hidradenitis Suppurativa için cerrahi ve takip odaklı içerik.",
-    href: "https://www.youtube.com/watch?v=LtQf94fnevI",
+    title: "KÖPEK MEMESİ TEDAVİSİ",
     videoId: "LtQf94fnevI",
   },
   {
-    title: "Hidradenitis Suppurativa tedavisi",
-    text: "Hastalığın tedavi anlatımı.",
-    href: "https://www.youtube.com/watch?v=qEFskZUwdMM",
+    title: "HİDRADENİTİS SUPPURATİVA- ( KÖPEK MEMESİ HASTALIĞI ) TEDAVİSİ",
     videoId: "qEFskZUwdMM",
   },
   {
-    title: "Hidradenitis Suppurativa tedavisi üzerine kısa içerik",
-    text: "Hastalığın tedavi yaklaşımı üzerine kısa içerik.",
-    href: "https://www.youtube.com/watch?v=Vbf2ZJNa7Gs",
+    title: "Hidradenitis Suppurativa Tedavisi - Köpek Memesi Hastalığı",
     videoId: "Vbf2ZJNa7Gs",
   },
 ];
