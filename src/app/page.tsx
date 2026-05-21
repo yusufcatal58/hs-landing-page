@@ -13,16 +13,16 @@ const symptoms = [
 
 const treatmentCards = [
   {
-    title: "Medikal yaklaşım",
-    text: "Erken tanıda ilaç tedavileri, bakım önerileri ve yaşam tarzı düzenlemeleri ile ilerleme yavaşlatılabilir.",
+    title: "Erken başvuru",
+    text: "Koltuk altı ve kasıklarda, ya da vücudun herhangi bir yerinde ağrılı nodüller olursa erken dönemde doktora başvurulmalı.",
   },
   {
-    title: "Cerrahi seçenekler",
-    text: "İleri veya tekrarlayan olgularda, hastalıklı dokunun çıkarılması ve bölgenin temizlenmesi etkili bir seçenek olabilir.",
+    title: "Birlikte tedavi",
+    text: "Tanı konulur konulmaz erken evrelerde medikal tedavi ve cerrahi tedavi birlikte uygulanmalı.",
   },
   {
-    title: "Kombine plan",
-    text: "Bazı hastalarda ilaç, bakım, takip ve cerrahi birlikte planlanarak daha güçlü bir kontrol hedeflenir.",
+    title: "İleri evre cerrahi",
+    text: "İlerleyen evrelerde tedavi tamamen cerrahidir.",
   },
 ];
 
@@ -451,6 +451,11 @@ export default function Home() {
         </div>
       </section>
 
+      <VideoSection
+        cards={videoCards.map(({ title, videoId }) => ({ title, videoId }))}
+        shorts={shortCards}
+      />
+
       <section id="icerik" className="mx-auto w-full max-w-7xl px-5 pb-28 sm:px-8 sm:pb-16 lg:px-12">
         <div className="space-y-6">
           <article
@@ -637,26 +642,28 @@ export default function Home() {
               Tedavi yaklaşımı
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              Erken dönemde medikal takip, ileri dönemde cerrahi seçenekler
-              konuşulabilir.
+              Hızlı Tanı Erken Müdahale
             </h2>
             <div className="mt-5 rounded-[1.5rem] border border-sky-100 bg-white/85 p-5 shadow-[0_12px_30px_rgba(59,130,246,0.06)] sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
                 Klinik çerçeve
               </p>
               <p className="mt-3 max-w-3xl text-lg font-semibold leading-8 text-slate-900">
-                Erken evrelerde ilaç tedavisi faydalı olabildiği gibi ilerleyen
-                dönemlerde cerrahi tedavi gereklidir.
+                Koltuk altı ve kasıklarda başta olmak üzere vücudun herhangi bir
+                yerinde ağrılı nodüller olursa erken dönemde doktora
+                başvurulmalı. Tanı konulur konulmaz erken evrelerde medikal
+                tedavi ve cerrahi tedavi birlikte uygulanmalı. İlerleyen
+                evrelerde tedavi tamamen cerrahidir.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
-                  Ağrı kontrolü
+                  Erken başvuru
                 </span>
                 <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
-                  Atak yönetimi
+                  Kombine tedavi
                 </span>
                 <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
-                  Cerrahi planlama
+                  Cerrahi odak
                 </span>
               </div>
             </div>
@@ -823,11 +830,6 @@ export default function Home() {
               </div>
             </div>
           </article>
-
-          <VideoSection
-            cards={videoCards.map(({ title, videoId }) => ({ title, videoId }))}
-            shorts={shortCards}
-          />
 
           <section
             id="konum-iletisim"
