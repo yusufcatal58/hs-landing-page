@@ -17,62 +17,62 @@ const treatmentCards = [
     text: "Koltuk altı ve kasıklarda, ya da vücudun herhangi bir yerinde ağrılı nodüller olursa erken dönemde doktora başvurulmalı.",
   },
   {
-    title: "Birlikte tedavi",
-    text: "Tanı konulur konulmaz erken evrelerde medikal tedavi ve cerrahi tedavi birlikte uygulanmalı.",
+    title: "Birlikte planlama",
+    text: "Tanı konulur konulmaz erken evrelerde tıbbi takip ile cerrahi planlama birlikte yapılmalı.",
   },
   {
     title: "İleri evre cerrahi",
-    text: "İlerleyen evrelerde tedavi tamamen cerrahidir.",
+    text: "İlerleyen evrelerde cerrahi yaklaşım öne çıkar.",
   },
 ];
 
 const videoCards = [
   {
-    title: "Hidradenitis Suppurativa ve Beslenme İlişkisi | Süt Ürünleri Tetikliyor mu?",
+    title: "Hidradenitis Suppurativa ve Beslenme İlişkisi",
     videoId: "3Aril8rIe9A",
   },
   {
-    title: "Artık Okula İsteyerek Gidiyorum | HS Hastasının Gerçek Hikayesi",
+    title: "Okula Dönüş Hikayesi | HS Hastasının Gerçek Hikayesi",
     videoId: "tSKRAVkez88",
   },
   {
-    title: "“İnsan Görmek İstemiyordum” | HS Hastasının Ameliyat Sonrası Değişimi",
+    title: "“İnsan Görmek İstemiyordum” | HS Hastasının Değişimi",
     videoId: "U0Dd_7dE3y8",
   },
   {
-    title: "İlk Defa 7 Aydır İlaç Kullanmıyorum” | HS Tedavisi Sonrası Değişim",
+    title: "İlk Defa 7 Aydır Rahatım | HS Sonrası Değişim",
     videoId: "nH1KwQyWKag",
   },
   {
-    title: "“Arabaya Bile Oturamıyordum” | HS Hastasının Ameliyat Sonrası İyileşme Hikayesi",
+    title: "“Arabaya Bile Oturamıyordum” | HS Hastasının İyileşme Hikayesi",
     videoId: "Oobqr8RWPwo",
   },
   {
-    title: "6 Yıl Acı Çekti, Şimdi Çok Mutlu | Hidradenitis Suppurativa Ameliyatı Sonrası Şevval’in Hikâyesi",
+    title: "6 Yıl Acı Çekti, Şimdi Çok Mutlu | Hidradenitis Suppurativa Sonrası Şevval’in Hikâyesi",
     videoId: "oMiq6k3zV6M",
   },
   {
-    title: "Bitmeyen Ağrılardan Kurtuldu: Hidradenitis Suppurativa Ameliyatı Sonrası Gerçek Hasta Yorumu",
+    title: "Bitmeyen Ağrılardan Kurtuldu: Hidradenitis Suppurativa Sonrası Gerçek Hasta Yorumu",
     videoId: "16lBh53XDA8",
   },
   {
-    title: "Hidradenitis Suppurativa Ameliyatı – Hastamız Anlatıyor #hidradenitissuppurativa",
+    title: "Hidradenitis Suppurativa - Hastamız Anlatıyor #hidradenitissuppurativa",
     videoId: "5V8UWcTzPEI",
   },
   {
-    title: "“Hayatımdan Vazgeçmiştim” – İsrafil Bey’in HS Ameliyatı Sonrası Yeni Hayatı #hidradenitissuppurativa",
+    title: "“Hayatımdan Vazgeçmiştim” – İsrafil Bey’in Hidradenitis Suppurativa Sonrası Yeni Hayatı #hidradenitissuppurativa",
     videoId: "fQU_RauIEBU",
   },
   {
-    title: "HS ile 5 Yıllık Mücadele: Estonya’dan Mr. Şahin’in Ameliyat Sonrası Hikâyesi",
+    title: "HS ile 5 Yıllık Mücadele: Estonya’dan Mr. Şahin’in İyileşme Hikâyesi",
     videoId: "XxO1M4OjrWo",
   },
   {
-    title: "Ozan Bey’in Hidradenitis Suppurativa Tedavi Yolculuğu - Hidradenitis Suppurativa Treatment Journey",
+    title: "Ozan Bey’in Hidradenitis Suppurativa Yolculuğu",
     videoId: "tn4FaDbzcYw",
   },
   {
-    title: "Hidradenitis Suppurativa ile Mücadele: Belirtiler, Tedavi ve Destek Yöntemleri",
+    title: "Hidradenitis Suppurativa ile Mücadele: Belirtiler ve Destek Yöntemleri",
     videoId: "hPwxl9pisFs",
   },
   {
@@ -80,31 +80,31 @@ const videoCards = [
     videoId: "NhRPMghHapQ",
   },
   {
-    title: "KÖPEK MEMESİ TEDAVİSİ",
+    title: "Köpek Memesi Hastalığı",
     videoId: "LtQf94fnevI",
   },
   {
-    title: "HİDRADENİTİS SUPPURATİVA- ( KÖPEK MEMESİ HASTALIĞI ) TEDAVİSİ",
+    title: "Hidradenitis Suppurativa - Köpek Memesi Hastalığı",
     videoId: "qEFskZUwdMM",
   },
   {
-    title: "Hidradenitis Suppurativa Tedavisi - Köpek Memesi Hastalığı",
+    title: "Hidradenitis Suppurativa - Köpek Memesi Hastalığı",
     videoId: "Vbf2ZJNa7Gs",
   },
 ];
 
 const shortCards = [
   { title: "Hidradenitis Suppurativa ve beslenme", videoId: "eRjHGX_XbkM" },
-  { title: "Tedavi sonrası iz kalır mı?", videoId: "Vjxn-0o-J7I" },
-  { title: "Hidradenitis Suppurativa tedavisini kim yapar?", videoId: "ObNFUhmESC4" },
+  { title: "İyileşme sonrası iz kalır mı?", videoId: "Vjxn-0o-J7I" },
+  { title: "Hidradenitis Suppurativa sürecini kim takip eder?", videoId: "ObNFUhmESC4" },
   { title: "Hidradenitis Suppurativa kendiliğinden geçer mi?", videoId: "vsejevqozgY" },
   { title: "Hidradenitis Suppurativa akne midir?", videoId: "Jld2uFJVykE" },
   { title: "Hidradenitis Suppurativa genetik midir?", videoId: "EOLWFiegxN0" },
-  { title: "Lazerle tedavi olur mu?", videoId: "nn9LAkxMyxY" },
+  { title: "Destek yöntemleri faydalı olur mu?", videoId: "nn9LAkxMyxY" },
   { title: "Cerrahi ne zaman gerekir?", videoId: "IXTJntmusvs" },
   { title: "Ameliyat sonrası hasta yorumu", videoId: "5V8UWcTzPEI" },
   { title: "Ameliyat sonrası iz kalır mı?", videoId: "8bBG6qx59C4" },
-  { title: "Koltuk altı botoksu faydalı mı?", videoId: "zfrqT02m7Zs" },
+  { title: "Koltuk altı uygulamaları faydalı mı?", videoId: "zfrqT02m7Zs" },
   { title: "Hidradenitis Suppurativa kadınlara özgü mü?", videoId: "jS0cHvToDuM" },
   { title: "Hayatımdan vazgeçmiştim", videoId: "fQU_RauIEBU" },
   { title: "İyileşmede ağrı kaçınılmaz mı?", videoId: "e9__Q99lXb8" },
@@ -219,7 +219,7 @@ const navItems = [
   { label: "Rehber", href: "#rehber" },
   { label: "Hakkında", href: "#hs-hakkinda" },
   { label: "Belirtiler", href: "#belirtiler" },
-  { label: "Tedavi", href: "#tedavi" },
+  { label: "Yaklaşım", href: "#yaklasim" },
   { label: "Evreler", href: "#evreler" },
   { label: "Yorumlar", href: "#yorumlar" },
   { label: "Videolar", href: "#videolar" },
@@ -635,11 +635,11 @@ export default function Home() {
           </article>
 
           <article
-            id="tedavi"
+            id="yaklasim"
             className="scroll-mt-36 rounded-[2rem] border border-sky-100 bg-gradient-to-b from-sky-50 to-white p-6 shadow-sm sm:p-8"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
-              Tedavi yaklaşımı
+              Klinik yaklaşım
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
               Hızlı Tanı Erken Müdahale
@@ -651,16 +651,16 @@ export default function Home() {
               <p className="mt-3 max-w-3xl text-lg font-semibold leading-8 text-slate-900">
                 Koltuk altı ve kasıklarda başta olmak üzere vücudun herhangi bir
                 yerinde ağrılı nodüller olursa erken dönemde doktora
-                başvurulmalı. Tanı konulur konulmaz erken evrelerde medikal
-                tedavi ve cerrahi tedavi birlikte uygulanmalı. İlerleyen
-                evrelerde tedavi tamamen cerrahidir.
+                başvurulmalı. Tanı konulur konulmaz erken evrelerde tıbbi takip
+                ile cerrahi planlama birlikte yapılmalı. İlerleyen evrelerde
+                cerrahi yaklaşım öne çıkar.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
                   Erken başvuru
                 </span>
                 <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
-                  Kombine tedavi
+                  Uzman değerlendirmesi
                 </span>
                 <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-800">
                   Cerrahi odak
@@ -693,7 +693,7 @@ export default function Home() {
                   Hidradenitis Suppurativa evreleri
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-[2rem]">
-                  Hurley sınıflaması tedavi planını netleştirir
+                  Hurley sınıflaması süreci netleştirir
                 </h2>
               </div>
               <span className="inline-flex w-fit items-center rounded-full border border-sky-300 bg-white px-5 py-2.5 text-sm font-semibold text-sky-700 shadow-sm">
@@ -738,7 +738,7 @@ export default function Home() {
                   Mutlu hastalar
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                  Tedavi sonrası paylaşılan kareler
+                  İyileşme sonrası paylaşılan kareler
                 </h2>
               </div>
             </div>
