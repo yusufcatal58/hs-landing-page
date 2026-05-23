@@ -2,6 +2,11 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
+import {
+  GOOGLE_ADS_CONVERSIONS,
+  trackGoogleAdsConversion,
+} from "../lib/google-ads";
+import { ConversionLink } from "./conversion-link";
 
 const AREA_OPTIONS = [
   "Koltuk altı",
@@ -60,6 +65,7 @@ export function ContactForm() {
         throw new Error(data.message || "Form gönderilemedi.");
       }
 
+      trackGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactForm);
       setSubmitState("success");
       setFeedback("Formunuz bize ulaştı. En kısa sürede dönüş yapılacak.");
       setName("");
@@ -209,12 +215,13 @@ export function ContactForm() {
         >
           {submitState === "sending" ? "Gönderiliyor..." : "Gönder"}
         </button>
-        <a
+        <ConversionLink
           href="tel:+905324615997"
+          sendTo={GOOGLE_ADS_CONVERSIONS.phoneCall}
           className="inline-flex items-center justify-center rounded-full border border-sky-200 bg-white px-6 py-3 text-sm font-semibold text-sky-900 transition hover:bg-sky-100"
         >
           Direkt ara
-        </a>
+        </ConversionLink>
       </div>
 
       {feedback ? (

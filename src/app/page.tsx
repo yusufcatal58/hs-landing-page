@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { ConversionLink } from "../components/conversion-link";
 import { ContactForm } from "../components/contact-form";
 import { VideoSection } from "../components/video-section";
+import { GOOGLE_ADS_CONVERSIONS } from "../lib/google-ads";
 
 const symptoms = [
   "Ağrılı nodüller",
@@ -438,15 +440,16 @@ export default function Home() {
               <ContactForm />
             </div>
 
-            <a
+            <ConversionLink
               href="https://wa.me/905324615997"
               target="_blank"
               rel="noreferrer"
+              sendTo={GOOGLE_ADS_CONVERSIONS.whatsappMessage}
               className="mt-4 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-green-500/20 transition hover:bg-[#1fb85a]"
             >
               <WhatsAppMark />
               WhatsApp gönder
-            </a>
+            </ConversionLink>
           </div>
         </div>
       </section>
@@ -937,17 +940,18 @@ export default function Home() {
         </div>
       </section>
 
-      <a
+      <ConversionLink
         href="https://wa.me/905324615997"
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp ile mesaj gönder"
+        sendTo={GOOGLE_ADS_CONVERSIONS.whatsappMessage}
         className="fixed bottom-5 right-5 z-50 inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_18px_50px_rgba(37,211,102,0.35)] transition hover:scale-[1.03] hover:bg-[#1fb85a] sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
       >
         <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
           <WhatsAppMark />
         </span>
-      </a>
+      </ConversionLink>
     </main>
   );
 }
