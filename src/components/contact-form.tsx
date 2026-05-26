@@ -37,8 +37,36 @@ export function ContactForm() {
     );
   }
 
+  function validateRequiredFields() {
+    if (!name.trim()) {
+      return "Lütfen ad soyad alanını doldurun.";
+    }
+
+    if (!phone.trim()) {
+      return "Lütfen telefon alanını doldurun.";
+    }
+
+    if (!duration.trim()) {
+      return "Lütfen hastalığı kaç yıldır yaşadığınızı yazın.";
+    }
+
+    if (selectedAreas.length === 0) {
+      return "Lütfen en az bir bölge seçin.";
+    }
+
+    return "";
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const validationMessage = validateRequiredFields();
+
+    if (validationMessage) {
+      setSubmitState("error");
+      setFeedback(validationMessage);
+      return;
+    }
 
     setSubmitState("sending");
     setFeedback("");
@@ -50,10 +78,10 @@ export function ContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name,
-          phone,
+          name: name.trim(),
+          phone: phone.trim(),
           email,
-          duration,
+          duration: duration.trim(),
           areas: selectedAreas,
           message,
         }),
@@ -92,19 +120,26 @@ export function ContactForm() {
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium text-slate-800">Ad Soyad</span>
+          <span className="text-sm font-medium text-slate-800">Ad Soyad *</span>
           <input
             value={name}
             onChange={(event) => setName(event.target.value)}
+            required
+            aria-required="true"
+            autoComplete="name"
             className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
             placeholder="Adınız"
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium text-slate-800">Telefon</span>
+          <span className="text-sm font-medium text-slate-800">Telefon *</span>
           <input
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
+            required
+            aria-required="true"
+            autoComplete="tel"
+            inputMode="tel"
             className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
             placeholder="+90..."
           />
@@ -116,6 +151,8 @@ export function ContactForm() {
         <input
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+          type="email"
+          autoComplete="email"
           className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
           placeholder="ornek@mail.com"
         />
@@ -123,11 +160,13 @@ export function ContactForm() {
 
       <label className="space-y-2 block">
         <span className="text-sm font-medium text-slate-800">
-          Kaç yıldır bu hastalığı yaşıyor
+          Kaç yıldır bu hastalığı yaşıyor *
         </span>
         <input
           value={duration}
           onChange={(event) => setDuration(event.target.value)}
+          required
+          aria-required="true"
           className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
           placeholder="Örn. 3 yıldır"
         />
@@ -135,7 +174,7 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <span className="text-sm font-medium text-slate-800">
-          Vücudun hangi bölgelerinde var
+          Vücudun hangi bölgelerinde var *
         </span>
         <button
           type="button"

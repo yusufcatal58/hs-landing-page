@@ -17,6 +17,35 @@ function formatAreas(areas: string[] | undefined) {
   return Array.isArray(areas) && areas.length > 0 ? areas.join(", ") : "-";
 }
 
+function normalizeText(value: string | undefined) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function validatePayload(payload: {
+  name?: string;
+  phone?: string;
+  duration?: string;
+  areas?: string[];
+}) {
+  if (!normalizeText(payload.name)) {
+    return "Ad soyad alanı zorunludur.";
+  }
+
+  if (!normalizeText(payload.phone)) {
+    return "Telefon alanı zorunludur.";
+  }
+
+  if (!normalizeText(payload.duration)) {
+    return "Hastalık süresi alanı zorunludur.";
+  }
+
+  if (!Array.isArray(payload.areas) || payload.areas.length === 0) {
+    return "En az bir bölge seçilmelidir.";
+  }
+
+  return "";
+}
+
 async function sendToMezesoft(payload: {
   name?: string;
   phone?: string;
@@ -86,6 +115,12 @@ export async function POST(request: Request) {
       message?: string;
     };
 
+    const validationMessage = validatePayload(payload);
+
+    if (validationMessage) {
+      return NextResponse.json({ message: validationMessage }, { status: 400 });
+    }
+
     const smtpHost = process.env.SMTP_HOST;
     const smtpPort = Number(process.env.SMTP_PORT || 587);
     const smtpUser = process.env.SMTP_USER;
@@ -99,12 +134,12 @@ export async function POST(request: Request) {
     const areas = Array.isArray(payload.areas) ? payload.areas : [];
     const subject = "Hidradenitis Suppurativa - Yeni iletişim formu";
     const text = [
-      `Ad Soyad: ${payload.name || "-"}`,
-      `Telefon: ${payload.phone || "-"}`,
-      `Mail: ${payload.email || "-"}`,
-      `Kaç yıldır yaşıyor: ${payload.duration || "-"}`,
+      `Ad Soyad: ${normalizeText(payload.name)}`,
+      `Telefon: ${normalizeText(payload.phone)}`,
+      `Mail: ${normalizeText(payload.email) || "-"}`,
+      `Kaç yıldır yaşıyor: ${normalizeText(payload.duration)}`,
       `Vücutta hangi bölgelerde: ${areas.join(", ") || "-"}`,
-      `Açıklama: ${payload.message || "-"}`,
+      `Açıklama: ${normalizeText(payload.message) || "-"}`,
     ].join("\n");
 
     if (smtpHost && smtpUser && smtpPass && smtpFrom) {
