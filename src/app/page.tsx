@@ -147,6 +147,59 @@ const reviewCards = [
   },
 ];
 
+const faqItems = [
+  {
+    question: "Hidradenitis Suppurativa nedir?",
+    answer:
+      "Hidradenitis Suppurativa, ter bezleri ve kıl kökleriyle ilişkili bölgelerde ortaya çıkan kronik ve tekrarlayıcı bir cilt hastalığıdır. Koltuk altı, kasık, meme altı, kalça ve iç bacak gibi sürtünmeye açık alanlarda ağrılı nodüller, apseler, akıntı ve zamanla deri altında tünel benzeri yapılar görülebilir. Hastalık basit bir sivilce ya da geçici çıban gibi düşünülmemelidir; uzun süreli takip ve doğru klinik değerlendirme gerektirebilir.",
+  },
+  {
+    question: "Hidradenitis Suppurativa bulaşıcı veya genetik bir hastalık mıdır?",
+    answer:
+      "Hidradenitis Suppurativa bulaşıcı değildir; temasla, doğumla ya da emzirme yoluyla başka bir kişiye geçmez. Kesin nedeni tam olarak bilinmese de genetik yatkınlık önemli faktörlerden biridir. Ailede benzer şikayetleri olan kişilerde görülme ihtimali artabilir. Bunun yanında hormonlar, kilo, sigara kullanımı, sürtünme, terleme ve stres gibi faktörler hastalığın seyrini etkileyebilir.",
+  },
+  {
+    question: "En çok hangi bölgelerde görülür?",
+    answer:
+      "Hidradenitis Suppurativa en sık koltuk altı, kasık, meme altı, kalça arası, iç bacak, göbek çevresi ve genital bölge gibi terleme ve sürtünmenin yoğun olduğu alanlarda görülür. Bu bölgelerde tekrarlayan ağrılı şişlikler, akıntılı yaralar, kötü koku, sertleşme ve iz dokusu gelişebilir. Aynı bölgede tekrar eden lezyonlar hastalığın önemli uyarı işaretlerinden biridir.",
+  },
+  {
+    question: "İlk belirtileri nelerdir ve başka hastalıklarla karışır mı?",
+    answer:
+      "İlk belirtiler genellikle cilt altında ağrılı, hassas, küçük nodüller veya şişlikler şeklinde başlar. Zamanla bu alanlar akıntılı apselere, iyileşmeyen yaralara, kalıcı izlere ve tünel oluşumuna dönüşebilir. Başlangıçta akne, çıban, folikülit veya basit enfeksiyonlarla karışabilir. Özellikle aynı bölgede sık tekrar eden, ağrılı ve iz bırakan lezyonlarda uzman değerlendirmesi önemlidir.",
+  },
+  {
+    question: "HS kimlerde daha yaygındır ve hangi durumlar tetikleyebilir?",
+    answer:
+      "Hidradenitis Suppurativa çoğunlukla ergenlik sonrası dönemde başlar ve 20-40 yaş arasında daha sık görülür. Kadınlarda daha yaygın olabilir; ancak erkeklerde de ağır seyredebilir. Aile öyküsü, fazla kilo, sigara kullanımı, hormonal değişiklikler, aşırı terleme, cilt sürtünmesi, stres ve bazı metabolik sorunlar hastalığın alevlenmesini kolaylaştırabilir.",
+  },
+  {
+    question: "Hidradenitis Suppurativa evreleri nelerdir?",
+    answer:
+      "Hastalığın şiddeti genellikle Hurley sınıflaması ile değerlendirilir. Hurley I evresinde sınırlı nodül veya apse görülür, tünel ve belirgin iz yoktur. Hurley II evresinde tekrarlayan apseler, sınırlı tüneller ve iz dokusu gelişebilir. Hurley III evresinde ise yaygın tutulum, birbirine bağlı tüneller, kronik akıntı ve belirgin skar dokusu görülebilir. Evreleme, sürecin nasıl yönetileceğini planlamak için önemlidir.",
+  },
+  {
+    question: "Erken başvuru neden önemlidir?",
+    answer:
+      "Erken başvuru, hastalığın ilerlemesini ve kalıcı iz dokusu gelişmesini azaltmak açısından önemlidir. Koltuk altı, kasık veya vücudun başka bir bölgesinde ağrılı nodüller, tekrarlayan apseler veya akıntılı yaralar varsa gecikmeden doktora başvurulmalıdır. Erken dönemde yapılan değerlendirme, hastalığın yaygınlığını anlamaya ve daha doğru bir plan oluşturmaya yardımcı olur.",
+  },
+  {
+    question: "Cerrahi müdahale ne zaman gündeme gelir?",
+    answer:
+      "Tekrarlayan apseler, deri altında tünel oluşumu, yaygın hastalıklı doku, sürekli akıntı, ağrı, hareket kısıtlılığı ve yaşam kalitesini ciddi şekilde etkileyen durumlarda cerrahi planlama gündeme gelebilir. Cerrahi yaklaşımda amaç hastalıklı dokunun temizlenmesi, bölgenin sağlıklı şekilde onarılması ve kişinin günlük hayatına daha rahat dönebilmesidir.",
+  },
+  {
+    question: "Ameliyat kesin çözüm müdür, tekrarlar mı?",
+    answer:
+      "Hastalıklı bölge yeterli genişlikte çıkarıldığında aynı bölgede tekrar görülme ihtimali belirgin şekilde azalır. Ancak Hidradenitis Suppurativa vücudun farklı ter bezi bölgelerinde yeni odaklar oluşturabilir. Bu nedenle cerrahi sonrası takip, yara bakımı, risk faktörlerinin azaltılması ve yeni başlayan lezyonların erken değerlendirilmesi önemlidir.",
+  },
+  {
+    question: "Ameliyat sonrası günlük hayata dönüş, ağrı ve iz süreci nasıldır?",
+    answer:
+      "İyileşme süreci hastalığın bulunduğu bölgeye, yaranın genişliğine, yapılan işlemin kapsamına ve kişinin genel durumuna göre değişir. Bazı hastalarda kısa sürede günlük yaşama dönüş mümkün olabilirken, geniş alanlarda daha dikkatli takip gerekir. Her cerrahi işlemden sonra belirli miktarda iz kalabilir; zaman içinde izlerin görünürlüğü azalabilir. Ağrı ise genellikle ilk günlerde daha belirgin olur ve hastane ortamında kontrol altına alınabilir.",
+  },
+];
+
 const happyPatientImages = [
   { src: "/patients/happy-1.png", alt: "Mutlu hasta fotoğrafı 1" },
   { src: "/patients/happy-2.png", alt: "Mutlu hasta fotoğrafı 2" },
@@ -831,6 +884,47 @@ export default function Home() {
                   </article>
                 ))}
               </div>
+            </div>
+          </article>
+
+          <article
+            id="sik-sorulan-sorular"
+            className="scroll-mt-36 rounded-[2rem] border border-sky-100 bg-white/92 p-6 text-slate-950 shadow-sm sm:p-8"
+          >
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+                  Sık sorulan sorular
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold tracking-tight">
+                  Hidradenitis Suppurativa hakkında merak edilenler
+                </h2>
+              </div>
+              <span className="w-fit rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
+                10 soru
+              </span>
+            </div>
+
+            <div className="mt-6 divide-y divide-sky-100 overflow-hidden rounded-[1.75rem] border border-sky-100 bg-sky-50/45">
+              {faqItems.map((item, index) => (
+                <details
+                  key={item.question}
+                  className="group bg-white/70 open:bg-white"
+                  open={index === 0}
+                >
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-5 text-left transition hover:bg-sky-50 sm:px-6">
+                    <span className="text-base font-semibold leading-7 text-slate-950 sm:text-lg">
+                      {item.question}
+                    </span>
+                    <span className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-sky-200 bg-white text-lg font-semibold text-sky-700 transition group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <div className="px-5 pb-5 text-[0.95rem] leading-8 text-slate-700 sm:px-6 sm:text-base">
+                    {item.answer}
+                  </div>
+                </details>
+              ))}
             </div>
           </article>
 
