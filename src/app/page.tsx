@@ -906,11 +906,10 @@ export default function Home() {
             </div>
 
             <div className="mt-6 divide-y divide-sky-100 overflow-hidden rounded-[1.75rem] border border-sky-100 bg-sky-50/45">
-              {faqItems.map((item, index) => (
+              {faqItems.map((item) => (
                 <details
                   key={item.question}
                   className="group bg-white/70 open:bg-white"
-                  open={index === 0}
                 >
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-4 px-5 py-5 text-left transition hover:bg-sky-50 sm:px-6">
                     <span className="text-base font-semibold leading-7 text-slate-950 sm:text-lg">
