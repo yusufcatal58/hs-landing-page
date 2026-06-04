@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ClinicalExampleReveal } from "../../components/clinical-example-reveal";
 import { ContactForm } from "../../components/contact-form";
 import { ConversionLink } from "../../components/conversion-link";
 import { DocumentLanguage } from "../../components/document-language";
@@ -9,9 +8,9 @@ import { VideoSection } from "../../components/video-section";
 import { GOOGLE_ADS_CONVERSIONS } from "../../lib/google-ads";
 
 export const metadata: Metadata = {
-  title: "Hidradenitis Suppurativa Care in Turkey | Prof. Dr. Bekir Atik",
+  title: "Hidradenitis Suppurativa Care in Türkiye | Prof. Dr. Bekir Atik",
   description:
-    "English landing page for international Hidradenitis Suppurativa patients seeking an expert surgical consultation in Turkey.",
+    "English landing page for international Hidradenitis Suppurativa patients seeking an expert surgical consultation in Türkiye.",
   alternates: {
     canonical: "/en",
     languages: {
@@ -25,9 +24,7 @@ const phoneNumber = "+90 532 461 59 97";
 const whatsappUrl = "https://wa.me/905324615997";
 
 const navItems = [
-  { label: "Guide", href: "#guide" },
-  { label: "About", href: "#about" },
-  { label: "Symptoms", href: "#symptoms" },
+  { label: "Guide", href: "#treatment-journey" },
   { label: "Approach", href: "#approach" },
   { label: "Stages", href: "#stages" },
   { label: "Stories", href: "#videolar" },
@@ -43,46 +40,6 @@ const areaOptions = [
   "Inner thighs",
   "Genital area",
   "Around belly button",
-];
-
-const symptoms = [
-  "Painful nodules",
-  "Recurring abscesses",
-  "Drainage and odor",
-  "Tunnel formation",
-  "Scarring and firmness",
-  "Movement limitation",
-];
-
-const flowSteps = [
-  {
-    step: "1",
-    title: "Sweat gland blockage",
-    text: "Blocked sweat-gland areas may trigger local inflammation.",
-  },
-  {
-    step: "2",
-    title: "Recurring flare-ups",
-    text: "Painful nodules and abscesses may appear in the same area.",
-  },
-  {
-    step: "3",
-    title: "Tunnels under the skin",
-    text: "Persistent inflammation may create sinus tracts beneath the skin.",
-  },
-  {
-    step: "4",
-    title: "Scarring",
-    text: "Repeated flare-ups can lead to firmness, scars and restricted movement.",
-  },
-];
-
-const profileItems = [
-  { label: "Often starts after puberty", icon: "clock" },
-  { label: "Common between 20 and 40", icon: "calendar" },
-  { label: "More frequent in women", icon: "female" },
-  { label: "Family history may matter", icon: "dna" },
-  { label: "Smoking and weight can worsen it", icon: "risk" },
 ];
 
 const approachCards = [
@@ -225,6 +182,80 @@ const faqItems = [
   },
 ];
 
+const journeyIntroCards = [
+  {
+    label: "Welcome",
+    title: "Your treatment journey in Türkiye",
+    text: "Thank you for choosing us for Hidradenitis Suppurativa care in Türkiye. This guide helps you understand each step from travel planning to the post-surgery period.",
+  },
+  {
+    label: "What is Hidradenitis Suppurativa?",
+    title: "A chronic inflammatory skin condition",
+    text: "Hidradenitis Suppurativa may cause painful nodules, abscesses and tunnels in areas such as the armpits, groin, buttocks and under the breasts. In advanced cases, surgical treatment can be one of the strongest options for long-term local control.",
+  },
+];
+
+const onlineEvaluationItems = [
+  "Medical history review",
+  "Photo assessment of affected areas",
+  "Review of previous treatments",
+  "Online consultation planning",
+  "Preliminary treatment plan",
+];
+
+const travelChecklist = [
+  "Passport",
+  "Previous test results",
+  "Current treatment list",
+  "Previous surgery reports, if any",
+  "Regularly used medicines",
+];
+
+const firstConsultationItems = [
+  "Detailed physical examination",
+  "Disease stage assessment",
+  "Surgical plan preparation",
+  "Operation details explained",
+  "Questions answered clearly",
+];
+
+const surgicalMethods = [
+  "Wide surgical excision",
+  "Partial excision",
+  "Skin graft applications",
+  "Local flap repairs",
+  "Combined reconstructive methods",
+  "Laser applications when suitable",
+];
+
+const hospitalStayOptions = [
+  "Same-day discharge",
+  "1-3 days hospital stay",
+  "3-7 days hospital stay",
+  "Special cases may need longer follow-up",
+];
+
+const recoveryItems = [
+  "Pain controlled with prescribed pain relief",
+  "Dressing and wound-care needs",
+  "Temporary movement limitation",
+  "Temporary swelling",
+  "Detailed care instructions from the doctor",
+];
+
+const turkeyStayOptions = [
+  "3-7 days for smaller procedures",
+  "10-14 days for more extensive procedures",
+  "The final duration depends on healing progress",
+];
+
+const returnHomeFollowUpItems = [
+  "Photo-based wound checks",
+  "Video consultations",
+  "Healing progress follow-up",
+  "Long-term result assessment",
+];
+
 function WhatsAppMark() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
@@ -239,16 +270,6 @@ function WhatsAppMark() {
         fill="currentColor"
       />
     </svg>
-  );
-}
-
-function SmallIcon({ type }: { type: string }) {
-  const icon = type === "female" ? "♀" : type === "dna" ? "DNA" : type === "risk" ? "!" : "•";
-
-  return (
-    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-sky-50 px-2 text-xs font-black text-sky-700">
-      {icon}
-    </span>
   );
 }
 
@@ -320,7 +341,7 @@ export default function EnglishPage() {
             Hidradenitis Suppurativa
           </p>
           <h1 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
-            Relief is possible with an experienced surgical team in Turkey.
+            Relief is possible with an experienced surgical team in Türkiye.
           </h1>
         </div>
 
@@ -343,11 +364,11 @@ export default function EnglishPage() {
                   Appointment
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-                  Send your details and our team will contact you.
+                  Request a consultation
                 </h2>
               </div>
               <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
-                International patients
+                International
               </span>
             </div>
 
@@ -429,196 +450,241 @@ export default function EnglishPage() {
               closeAria: "Close video",
             }}
           />
-
-          <ClinicalExampleReveal
-            examples={[
-              {
-                src: "/clinical-examples/hs-1.png",
-                alt: "Hidradenitis Suppurativa surgery before and after clinical example",
-                title: "Clinical example 1",
-              },
-              {
-                src: "/clinical-examples/hs-2.png",
-                alt: "Hidradenitis Suppurativa surgery before and after clinical example with corrected before and after placement",
-                title: "Clinical example 2",
-              },
-              {
-                src: "/clinical-examples/hs-3.png",
-                alt: "Hidradenitis Suppurativa surgery before and after clinical example in genital and perianal area",
-                title: "Clinical example 3",
-              },
-              {
-                src: "/clinical-examples/hs-4.png",
-                alt: "Hidradenitis Suppurativa surgery before and after clinical example in the armpit area",
-                title: "Clinical example 4",
-              },
-            ]}
-          />
         </div>
+      </section>
+
+      <section
+        id="treatment-journey"
+        className="mx-auto w-full max-w-7xl scroll-mt-36 px-5 pb-8 sm:px-8 sm:pb-10 lg:px-12"
+      >
+        <article className="overflow-hidden rounded-[2.4rem] border border-sky-100 bg-white/94 shadow-sm">
+          <div className="relative overflow-hidden border-b border-sky-100 bg-slate-950">
+            <Image
+              src="/journey/treatment-journey-turkey.png"
+              alt="From Hidradenitis Suppurativa to healing treatment journey in Türkiye"
+              width={1717}
+              height={916}
+              sizes="(min-width: 640px) 1280px, 0px"
+              className="hidden h-auto w-full sm:block"
+            />
+            <Image
+              src="/journey/treatment-journey-mobile.png"
+              alt="From Hidradenitis Suppurativa to healing treatment journey in Türkiye"
+              width={1122}
+              height={1402}
+              sizes="(max-width: 639px) 100vw, 0px"
+              className="block h-auto w-full sm:hidden"
+            />
+          </div>
+
+          <div className="space-y-6 p-5 sm:p-8">
+            <div className="grid gap-4 lg:grid-cols-2">
+              {journeyIntroCards.map((card) => (
+                <section
+                  key={card.label}
+                  className="rounded-[1.7rem] border border-sky-100 bg-sky-50/70 p-5 shadow-[0_14px_35px_rgba(59,130,246,0.06)]"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                    {card.label}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+                    {card.text}
+                  </p>
+                </section>
+              ))}
+            </div>
+
+            <div className="grid gap-4 xl:grid-cols-[1fr_0.92fr]">
+              <section className="rounded-[1.7rem] border border-sky-100 bg-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                  Online evaluation before treatment
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
+                  Planning starts before you travel.
+                </h3>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {onlineEvaluationItems.map((item, index) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 rounded-2xl border border-sky-100 bg-sky-50/70 p-3"
+                    >
+                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-xs font-black text-sky-700 shadow-sm">
+                        {index + 1}
+                      </span>
+                      <span className="text-sm font-semibold text-slate-700">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="rounded-[1.7rem] border border-sky-100 bg-slate-950 p-5 text-white shadow-[0_14px_35px_rgba(15,23,42,0.08)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200">
+                  What to bring before coming to Türkiye
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight">
+                  Travel checklist
+                </h3>
+                <div className="mt-5 grid gap-3">
+                  {travelChecklist.map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/8 p-3"
+                    >
+                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-300 text-xs font-black text-slate-950">
+                        ✓
+                      </span>
+                      <span className="text-sm font-semibold text-slate-100">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <div className="grid gap-4 lg:grid-cols-3">
+              <section className="rounded-[1.7rem] border border-sky-100 bg-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                  First consultation day
+                </p>
+                <ul className="mt-4 space-y-3">
+                  {firstConsultationItems.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-6 text-slate-700">
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-sky-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="rounded-[1.7rem] border border-sky-100 bg-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                  Surgical treatment process
+                </p>
+                <ul className="mt-4 grid gap-3">
+                  {surgicalMethods.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-2xl border border-sky-100 bg-sky-50/70 px-4 py-3 text-sm font-semibold text-slate-700"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-sm leading-7 text-slate-600">
+                  The aim is to remove diseased tissue, improve comfort, reduce
+                  infection burden and lower the risk of local recurrence.
+                </p>
+              </section>
+
+              <section className="rounded-[1.7rem] border border-sky-100 bg-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                  Hospital stay duration
+                </p>
+                <div className="mt-4 space-y-3">
+                  {hospitalStayOptions.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-sky-100 bg-sky-50/70 px-4 py-3 text-sm font-semibold text-slate-700"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <div className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
+              <section className="rounded-[1.7rem] border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                  After surgery period
+                </p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950">
+                  Recovery is followed step by step.
+                </h3>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {recoveryItems.map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-sky-100 bg-white px-4 py-3 text-sm font-semibold text-slate-700"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <section className="rounded-[1.7rem] border border-sky-100 bg-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                    Recommended stay in Türkiye
+                  </p>
+                  <div className="mt-4 space-y-3">
+                    {turkeyStayOptions.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-2xl border border-sky-100 bg-sky-50/70 px-4 py-3 text-sm font-semibold text-slate-700"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section className="rounded-[1.7rem] border border-sky-100 bg-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                    After returning to your country
+                  </p>
+                  <div className="mt-4 space-y-3">
+                    {returnHomeFollowUpItems.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-2xl border border-sky-100 bg-sky-50/70 px-4 py-3 text-sm font-semibold text-slate-700"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <section className="rounded-[1.8rem] border border-sky-200 bg-gradient-to-r from-sky-50 via-white to-cyan-50 p-5 shadow-[0_14px_35px_rgba(59,130,246,0.06)] sm:p-6">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                    Pre-surgery document
+                  </p>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">
+                    Patient Information Form
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                    Download the English pre-surgery patient information form
+                    before your consultation.
+                  </p>
+                </div>
+                <a
+                  href="/forms/hidradenitis-suppurativa-pre-surgery-patient-information-form-en.pdf"
+                  download
+                  aria-label="Download pre-surgery patient information PDF"
+                  className="inline-flex w-fit items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-bold text-white shadow-[0_16px_35px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:bg-sky-800"
+                >
+                  Download PDF
+                </a>
+              </div>
+            </section>
+
+          </div>
+        </article>
       </section>
 
       <section id="content" className="mx-auto w-full max-w-7xl px-5 pb-28 sm:px-8 sm:pb-16 lg:px-12">
         <div className="space-y-6">
-          <article
-            id="guide"
-            className="scroll-mt-36 overflow-hidden rounded-[2.4rem] border border-sky-100 bg-white/92 shadow-sm"
-          >
-            <div className="grid gap-0 xl:grid-cols-[1.08fr_0.92fr]">
-              <div className="relative min-h-[560px] overflow-hidden bg-slate-950">
-                <Image
-                  src="/hero-hs.png"
-                  alt="Surgical background"
-                  fill
-                  sizes="(max-width: 1280px) 100vw, 50vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.18),rgba(15,23,42,0.42),rgba(2,132,199,0.55))]" />
-                <div className="relative flex h-full flex-col justify-between p-6 sm:p-8">
-                  <div className="max-w-xl">
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky-100">
-                      International Hidradenitis Suppurativa patient guide
-                    </p>
-                    <h2 className="mt-4 max-w-lg text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                      How HS starts, progresses and affects daily life.
-                    </h2>
-                  </div>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {flowSteps.map((item) => (
-                      <div
-                        key={item.step}
-                        className="rounded-[1.35rem] border border-white/15 bg-white/12 p-4 text-white backdrop-blur-md"
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-slate-950 shadow-lg shadow-slate-950/10">
-                            {item.step}
-                          </span>
-                          <p className="text-sm font-semibold">{item.title}</p>
-                        </div>
-                        <p className="mt-3 text-sm leading-6 text-slate-100/95">
-                          {item.text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-5 p-6 sm:p-8">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <article className="rounded-[1.5rem] border border-sky-100 bg-sky-50 p-5 shadow-[0_12px_30px_rgba(59,130,246,0.06)]">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700">
-                      Common symptoms
-                    </p>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                      {symptoms.map((item, index) => (
-                        <div key={item} className="rounded-[1rem] border border-white bg-white p-3">
-                          <div className="flex items-center justify-between gap-3">
-                            <span className="text-sm font-semibold text-slate-950">
-                              {item}
-                            </span>
-                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-100 text-[11px] font-black text-sky-700">
-                              {index + 1}
-                            </span>
-                          </div>
-                          <div className="mt-3 h-2 rounded-full bg-sky-100">
-                            <div
-                              className="h-2 rounded-full bg-gradient-to-r from-sky-500 to-cyan-400"
-                              style={{ width: `${62 + index * 4}%` }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </article>
-
-                  <article className="rounded-[1.5rem] border border-sky-100 bg-white p-5 shadow-[0_12px_30px_rgba(59,130,246,0.06)]">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700">
-                      Who is affected?
-                    </p>
-                    <div className="mt-4 rounded-[1.25rem] bg-slate-950 p-4 text-white">
-                      <p className="text-xs uppercase tracking-[0.2em] text-sky-200">
-                        Common onset range
-                      </p>
-                      <p className="mt-2 text-4xl font-semibold">20-40</p>
-                      <p className="mt-2 text-sm text-slate-300">
-                        HS often begins after puberty and may continue with recurring flare-ups.
-                      </p>
-                    </div>
-                    <div className="mt-4 space-y-3">
-                      {profileItems.map((item) => (
-                        <div
-                          key={item.label}
-                          className="flex items-center justify-between gap-3 rounded-2xl border border-sky-100 bg-sky-50/70 px-4 py-3"
-                        >
-                          <span className="text-sm font-medium text-slate-700">
-                            {item.label}
-                          </span>
-                          <SmallIcon type={item.icon} />
-                        </div>
-                      ))}
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article
-            id="about"
-            className="scroll-mt-36 rounded-[2rem] border border-sky-100 bg-white/85 p-6 shadow-sm sm:p-8"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
-              About Hidradenitis Suppurativa
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">
-              HS is a chronic and recurring skin condition that can affect quality of life.
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-700">
-              It commonly appears in friction-prone areas such as the armpits,
-              groin, buttocks, inner thighs and under the breasts. Painful
-              nodules, abscesses, drainage, odor and tunnel formation may develop
-              over time.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              {areaOptions.map((chip) => (
-                <span
-                  key={chip}
-                  className="rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-900"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-          </article>
-
-          <article
-            id="symptoms"
-            className="scroll-mt-36 rounded-[2rem] border border-sky-100 bg-white/85 p-6 shadow-sm sm:p-8"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
-              Symptoms
-            </p>
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-950">What may be seen?</p>
-                <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-700">
-                  {symptoms.map((item) => (
-                    <li key={item}>- {item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-[1.5rem] border border-sky-100 bg-sky-50 p-5">
-                <p className="text-sm font-semibold text-sky-950">Why early assessment matters</p>
-                <p className="mt-3 text-sm leading-7 text-slate-700">
-                  When repeated flare-ups are left unassessed, scarring, sinus
-                  tracts and movement limitation may become more significant.
-                </p>
-              </div>
-            </div>
-          </article>
-
           <article
             id="approach"
             className="scroll-mt-36 rounded-[2rem] border border-sky-100 bg-gradient-to-b from-sky-50 to-white p-6 shadow-sm sm:p-8"
@@ -875,7 +941,7 @@ export default function EnglishPage() {
               <div className="flex justify-center">
                 <Image
                   src="/logos/saglik-bakanligi-logo2.png"
-                  alt="Republic of Turkey Ministry of Health"
+                  alt="Republic of Türkiye Ministry of Health"
                   width={135}
                   height={135}
                   className="h-10 w-auto object-contain sm:h-12 lg:h-14"
