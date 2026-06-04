@@ -8,7 +8,7 @@ import {
 } from "../lib/google-ads";
 import { ConversionLink } from "./conversion-link";
 
-const AREA_OPTIONS = [
+const DEFAULT_AREA_OPTIONS = [
   "Koltuk altı",
   "Kasık",
   "Kalça",
@@ -18,7 +18,101 @@ const AREA_OPTIONS = [
   "Göbek çevresi",
 ];
 
-export function ContactForm() {
+type ContactFormLabels = {
+  name: string;
+  namePlaceholder: string;
+  phone: string;
+  phonePlaceholder: string;
+  email: string;
+  emailPlaceholder: string;
+  duration: string;
+  durationPlaceholder: string;
+  areas: string;
+  areaPlaceholder: string;
+  areaSelect: string;
+  areaDone: string;
+  message: string;
+  messagePlaceholder: string;
+  submit: string;
+  sending: string;
+  call: string;
+  success: string;
+  errors: {
+    name: string;
+    phone: string;
+    duration: string;
+    areas: string;
+    submit: string;
+    unknown: string;
+  };
+};
+
+const DEFAULT_LABELS: ContactFormLabels = {
+  name: "Ad Soyad *",
+  namePlaceholder: "Adınız",
+  phone: "Telefon *",
+  phonePlaceholder: "+90...",
+  email: "Mail",
+  emailPlaceholder: "ornek@mail.com",
+  duration: "Kaç yıldır bu hastalığı yaşıyor *",
+  durationPlaceholder: "Örn. 3 yıldır",
+  areas: "Vücudun hangi bölgelerinde var *",
+  areaPlaceholder: "Bölge seçin",
+  areaSelect: "Seç",
+  areaDone: "Tamam",
+  message: "Açıklama",
+  messagePlaceholder: "Kısa bir açıklama yazın...",
+  submit: "Gönder",
+  sending: "Gönderiliyor...",
+  call: "Direkt ara",
+  success: "Formunuz bize ulaştı. En kısa sürede dönüş yapılacak.",
+  errors: {
+    name: "Lütfen ad soyad alanını doldurun.",
+    phone: "Lütfen telefon alanını doldurun.",
+    duration: "Lütfen hastalığı kaç yıldır yaşadığınızı yazın.",
+    areas: "Lütfen en az bir bölge seçin.",
+    submit: "Form gönderilemedi.",
+    unknown: "Form gönderilemedi. Lütfen daha sonra tekrar deneyin.",
+  },
+};
+
+type ContactFormProps = {
+  areaOptions?: string[];
+  labels?: Partial<Omit<ContactFormLabels, "errors">> & {
+    errors?: Partial<ContactFormLabels["errors"]>;
+  };
+  language?: "tr" | "en";
+};
+
+function FieldLabel({ label }: { label: string }) {
+  const trimmed = label.trim();
+  const isRequired = trimmed.endsWith("*");
+  const text = isRequired ? trimmed.slice(0, -1).trim() : trimmed;
+
+  return (
+    <span className="text-sm font-semibold leading-6 text-slate-800">
+      {text}
+      {isRequired ? <span className="text-sky-700">*</span> : null}
+    </span>
+  );
+}
+
+const fieldClassName =
+  "w-full rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-100";
+
+export function ContactForm({
+  areaOptions = DEFAULT_AREA_OPTIONS,
+  labels,
+  language = "tr",
+}: ContactFormProps = {}) {
+  const copy = {
+    ...DEFAULT_LABELS,
+    ...labels,
+    errors: {
+      ...DEFAULT_LABELS.errors,
+      ...labels?.errors,
+    },
+  };
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -39,19 +133,19 @@ export function ContactForm() {
 
   function validateRequiredFields() {
     if (!name.trim()) {
-      return "Lütfen ad soyad alanını doldurun.";
+      return copy.errors.name;
     }
 
     if (!phone.trim()) {
-      return "Lütfen telefon alanını doldurun.";
+      return copy.errors.phone;
     }
 
     if (!duration.trim()) {
-      return "Lütfen hastalığı kaç yıldır yaşadığınızı yazın.";
+      return copy.errors.duration;
     }
 
     if (selectedAreas.length === 0) {
-      return "Lütfen en az bir bölge seçin.";
+      return copy.errors.areas;
     }
 
     return "";
@@ -84,18 +178,19 @@ export function ContactForm() {
           duration: duration.trim(),
           areas: selectedAreas,
           message,
+          language,
         }),
       });
 
       const data: { message?: string } = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(data.message || "Form gönderilemedi.");
+        throw new Error(data.message || copy.errors.submit);
       }
 
       trackGoogleAdsConversion(GOOGLE_ADS_CONVERSIONS.contactForm);
       setSubmitState("success");
-      setFeedback("Formunuz bize ulaştı. En kısa sürede dönüş yapılacak.");
+      setFeedback(copy.success);
       setName("");
       setPhone("");
       setEmail("");
@@ -108,7 +203,7 @@ export function ContactForm() {
       setFeedback(
         error instanceof Error
           ? error.message
-          : "Form gönderilemedi. Lütfen daha sonra tekrar deneyin.",
+          : copy.errors.unknown,
       );
     }
   }
@@ -116,23 +211,23 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 rounded-[1.75rem] border border-sky-100 bg-sky-50/70 p-5"
+      className="space-y-4"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium text-slate-800">Ad Soyad *</span>
+          <FieldLabel label={copy.name} />
           <input
             value={name}
             onChange={(event) => setName(event.target.value)}
             required
             aria-required="true"
             autoComplete="name"
-            className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
-            placeholder="Adınız"
+            className={fieldClassName}
+            placeholder={copy.namePlaceholder}
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium text-slate-800">Telefon *</span>
+          <FieldLabel label={copy.phone} />
           <input
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
@@ -140,46 +235,42 @@ export function ContactForm() {
             aria-required="true"
             autoComplete="tel"
             inputMode="tel"
-            className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
-            placeholder="+90..."
+            className={fieldClassName}
+            placeholder={copy.phonePlaceholder}
           />
         </label>
       </div>
 
       <label className="space-y-2 block">
-        <span className="text-sm font-medium text-slate-800">Mail</span>
+        <FieldLabel label={copy.email} />
         <input
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           type="email"
           autoComplete="email"
-          className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
-          placeholder="ornek@mail.com"
+          className={fieldClassName}
+          placeholder={copy.emailPlaceholder}
         />
       </label>
 
       <label className="space-y-2 block">
-        <span className="text-sm font-medium text-slate-800">
-          Kaç yıldır bu hastalığı yaşıyor *
-        </span>
+        <FieldLabel label={copy.duration} />
         <input
           value={duration}
           onChange={(event) => setDuration(event.target.value)}
           required
           aria-required="true"
-          className="w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
-          placeholder="Örn. 3 yıldır"
+          className={fieldClassName}
+          placeholder={copy.durationPlaceholder}
         />
       </label>
 
       <div className="space-y-2">
-        <span className="text-sm font-medium text-slate-800">
-          Vücudun hangi bölgelerinde var *
-        </span>
+        <FieldLabel label={copy.areas} />
         <button
           type="button"
           onClick={() => setIsAreaPickerOpen((current) => !current)}
-          className="flex min-h-[54px] w-full items-center justify-between gap-3 rounded-2xl border border-sky-200 bg-white px-4 py-3 text-left text-slate-950 outline-none transition hover:border-sky-300 focus:border-sky-400"
+          className="flex min-h-[52px] w-full items-center justify-between gap-3 rounded-[1.15rem] border border-slate-200 bg-white px-4 py-3 text-left text-slate-950 outline-none transition hover:border-sky-300 focus:border-sky-400 focus:ring-4 focus:ring-sky-100"
           aria-expanded={isAreaPickerOpen}
         >
           <span className="flex flex-wrap gap-2">
@@ -193,18 +284,18 @@ export function ContactForm() {
                 </span>
               ))
             ) : (
-              <span className="text-slate-400">Bölge seçin</span>
+              <span className="text-slate-400">{copy.areaPlaceholder}</span>
             )}
           </span>
           <span className="shrink-0 text-sm font-semibold text-sky-700">
-            Seç
+            {copy.areaSelect}
           </span>
         </button>
 
         {isAreaPickerOpen && (
-          <div className="rounded-[1.5rem] border border-sky-200 bg-white p-4 shadow-[0_18px_42px_rgba(59,130,246,0.12)]">
+          <div className="rounded-[1.2rem] border border-slate-200 bg-white p-3 shadow-[0_12px_28px_rgba(15,23,42,0.06)]">
             <div className="flex flex-wrap gap-3">
-              {AREA_OPTIONS.map((area) => {
+              {areaOptions.map((area) => {
                 const isSelected = selectedAreas.includes(area);
 
                 return (
@@ -216,7 +307,7 @@ export function ContactForm() {
                     className={`rounded-full border px-4 py-2.5 text-sm font-semibold transition ${
                       isSelected
                         ? "border-sky-600 bg-sky-700 text-white shadow-sm"
-                        : "border-sky-200 bg-sky-50 text-sky-900 hover:border-sky-300 hover:bg-sky-100"
+                        : "border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:bg-sky-50"
                     }`}
                   >
                     {area}
@@ -230,19 +321,19 @@ export function ContactForm() {
               onClick={() => setIsAreaPickerOpen(false)}
               className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 sm:w-auto"
             >
-              Tamam
+              {copy.areaDone}
             </button>
           </div>
         )}
       </div>
 
       <label className="space-y-2 block">
-        <span className="text-sm font-medium text-slate-800">Açıklama</span>
+        <FieldLabel label={copy.message} />
         <textarea
           value={message}
           onChange={(event) => setMessage(event.target.value)}
-          className="min-h-[140px] w-full rounded-2xl border border-sky-200 bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-sky-400"
-          placeholder="Kısa bir açıklama yazın..."
+          className={`${fieldClassName} min-h-[120px] resize-none`}
+          placeholder={copy.messagePlaceholder}
         />
       </label>
 
@@ -252,14 +343,14 @@ export function ContactForm() {
           disabled={submitState === "sending"}
           className="inline-flex items-center justify-center rounded-full bg-sky-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-600"
         >
-          {submitState === "sending" ? "Gönderiliyor..." : "Gönder"}
+          {submitState === "sending" ? copy.sending : copy.submit}
         </button>
         <ConversionLink
           href="tel:+905324615997"
           sendTo={GOOGLE_ADS_CONVERSIONS.phoneCall}
           className="inline-flex items-center justify-center rounded-full border border-sky-200 bg-white px-6 py-3 text-sm font-semibold text-sky-900 transition hover:bg-sky-100"
         >
-          Direkt ara
+          {copy.call}
         </ConversionLink>
       </div>
 

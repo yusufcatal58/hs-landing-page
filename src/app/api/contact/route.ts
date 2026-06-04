@@ -53,6 +53,7 @@ async function sendToMezesoft(payload: {
   duration?: string;
   areas?: string[];
   message?: string;
+  language?: string;
 }) {
   const apiUrl =
     process.env.MEZESOFT_API_URL || "https://medical.mezesoft.com/api/form";
@@ -84,6 +85,7 @@ async function sendToMezesoft(payload: {
         areas: formatAreas(payload.areas),
         areas_list: Array.isArray(payload.areas) ? payload.areas : [],
         message: payload.message || "",
+        language: payload.language || "tr",
         landing_id: landingId,
         landing_name: landingName,
         landing_url: landingUrl,
@@ -113,6 +115,7 @@ export async function POST(request: Request) {
       duration?: string;
       areas?: string[];
       message?: string;
+      language?: string;
     };
 
     const validationMessage = validatePayload(payload);
@@ -137,6 +140,7 @@ export async function POST(request: Request) {
       `Ad Soyad: ${normalizeText(payload.name)}`,
       `Telefon: ${normalizeText(payload.phone)}`,
       `Mail: ${normalizeText(payload.email) || "-"}`,
+      `Dil: ${normalizeText(payload.language) || "tr"}`,
       `Kaç yıldır yaşıyor: ${normalizeText(payload.duration)}`,
       `Vücutta hangi bölgelerde: ${areas.join(", ") || "-"}`,
       `Açıklama: ${normalizeText(payload.message) || "-"}`,

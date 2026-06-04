@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ConversionLink } from "../components/conversion-link";
 import { ContactForm } from "../components/contact-form";
+import { LanguageSwitch } from "../components/language-switch";
 import { VideoSection } from "../components/video-section";
 import { GOOGLE_ADS_CONVERSIONS } from "../lib/google-ads";
 
@@ -408,8 +409,8 @@ export default function Home() {
     >
       <section className="mx-auto w-full max-w-7xl px-5 pt-5 pb-3 sm:px-8 lg:px-12">
         <header className="rounded-[1.75rem] border border-white/70 bg-white/88 px-4 py-3 shadow-[0_20px_60px_rgba(59,130,246,0.08)] backdrop-blur-md sm:px-5">
-          <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[minmax(250px,auto)_1fr_auto] lg:items-center">
-            <a href="#top" className="flex shrink-0 items-center gap-3 lg:min-w-[250px]">
+          <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[minmax(210px,auto)_minmax(0,1fr)_max-content] lg:items-center">
+            <a href="#top" className="flex min-w-0 shrink-0 items-center gap-3 lg:min-w-[210px]">
               <span className="relative flex h-10 w-10 items-center justify-center rounded-[1rem] bg-slate-950 text-white shadow-lg shadow-slate-950/10">
                 <span className="absolute left-[11px] top-[9px] h-5 w-2.5 rotate-[28deg] rounded-full bg-white" />
                 <span className="absolute right-[11px] top-[9px] h-5 w-2.5 -rotate-[28deg] rounded-full bg-white" />
@@ -426,25 +427,34 @@ export default function Home() {
 
             <nav
               aria-label="Sayfa menüsü"
-              className="hidden flex-wrap gap-2 lg:flex lg:flex-nowrap lg:justify-center"
+              className="hidden min-w-0 flex-wrap gap-1.5 lg:flex lg:justify-center xl:gap-2"
             >
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="whitespace-nowrap rounded-full bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 xl:px-3.5 xl:text-sm"
+                  className="whitespace-nowrap rounded-full bg-slate-50 px-2.5 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 xl:px-3 xl:text-sm"
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
 
-            <a
-              href="#randevu"
-              className="inline-flex w-full min-w-[150px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-red-600 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-red-500/20 transition hover:bg-red-500 sm:w-auto lg:justify-self-end"
-            >
-              Randevu al
-            </a>
+            <div className="flex w-full max-w-full items-center justify-end gap-1.5 sm:w-auto lg:justify-self-end">
+              <LanguageSwitch
+                href="/en"
+                label="English"
+                ariaLabel="İngilizce sayfaya geç"
+                flag="en"
+                showLabel={false}
+              />
+              <a
+                href="#randevu"
+                className="inline-flex h-10 min-w-[106px] flex-1 shrink-0 items-center justify-center whitespace-nowrap rounded-[0.95rem] bg-[#e50914] px-3.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(229,9,20,0.18)] transition hover:-translate-y-0.5 hover:bg-[#d90812] sm:flex-none"
+              >
+                Randevu al
+              </a>
+            </div>
           </div>
         </header>
       </section>
@@ -509,8 +519,16 @@ export default function Home() {
 
       <VideoSection
         cards={videoCards.map(({ title, videoId }) => ({ title, videoId }))}
-        shorts={shortCards}
+        showShorts={false}
       />
+
+      <section className="mx-auto w-full max-w-7xl px-5 pt-6 sm:px-8 lg:px-12">
+        <VideoSection
+          sectionId="soru-cevap-videolari"
+          shorts={shortCards}
+          showCards={false}
+        />
+      </section>
 
       <section id="icerik" className="mx-auto w-full max-w-7xl px-5 pb-28 sm:px-8 sm:pb-16 lg:px-12">
         <div className="space-y-6">
