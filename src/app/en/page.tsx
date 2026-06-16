@@ -8,9 +8,9 @@ import { VideoSection } from "../../components/video-section";
 import { GOOGLE_ADS_CONVERSIONS } from "../../lib/google-ads";
 
 export const metadata: Metadata = {
-  title: "Hidradenitis Suppurativa Care in Türkiye | Prof. Dr. Bekir Atik",
+  title: "Hidradenitis Suppurativa Surgery in Türkiye | Prof. Dr. Bekir Atik",
   description:
-    "English landing page for international Hidradenitis Suppurativa patients seeking an expert surgical consultation in Türkiye.",
+    "Information for international patients considering Hidradenitis Suppurativa surgery in Türkiye, including specialist consultation, treatment planning, cost factors and recovery time.",
   alternates: {
     canonical: "/en",
     languages: {
@@ -45,7 +45,7 @@ const areaOptions = [
 const approachCards = [
   {
     title: "Early assessment",
-    text: "Painful nodules in the armpits, groin or any recurring body area should be assessed early by a specialist.",
+    text: "Painful nodules in the armpits, groin or any recurring body area should be assessed early through a specialist consultation.",
   },
   {
     title: "Combined planning",
@@ -53,7 +53,7 @@ const approachCards = [
   },
   {
     title: "Advanced-stage surgery",
-    text: "In advanced stages, surgical management often becomes the main option for diseased tissue.",
+    text: "In stage 3 or severe Hidradenitis Suppurativa, surgical management often becomes the main option for diseased tissue.",
   },
 ];
 
@@ -176,22 +176,65 @@ const faqItems = [
       "Surgical planning may be considered when recurrent abscesses, sinus tracts, chronic drainage, scar tissue, pain or movement limitation affect daily life. The aim is to remove diseased tissue and restore the area as safely as possible.",
   },
   {
+    question: "How much does Hidradenitis Suppurativa surgery cost?",
+    answer:
+      "The cost of Hidradenitis Suppurativa surgery depends on the disease stage, affected body area, operation size, anesthesia needs, hospital stay and whether reconstruction such as a flap or skin graft is required. A clear treatment and cost plan can be prepared after medical evaluation.",
+  },
+  {
+    question: "How long is recovery after Hidradenitis Suppurativa surgery?",
+    answer:
+      "Recovery time varies according to the operated area and the size of the procedure. Smaller procedures may need a shorter follow-up period, while wide excision, skin grafts or flap repairs may require longer wound care, movement precautions and remote follow-up after returning home.",
+  },
+  {
+    question: "Can international patients travel to Türkiye for HS surgery?",
+    answer:
+      "Yes. International patients can share their medical history and affected-area photos before travel so the first assessment, possible treatment plan, expected stay and follow-up needs can be discussed in advance.",
+  },
+  {
+    question: "Is surgery a permanent cure for Hidradenitis Suppurativa?",
+    answer:
+      "Surgery may provide strong long-term local control when diseased tissue is fully removed from the treated area. However, HS is a chronic condition and new lesions may still appear in other sweat-gland areas, so follow-up remains important.",
+  },
+  {
+    question: "Do you treat severe or stage 3 Hidradenitis Suppurativa?",
+    answer:
+      "Advanced or stage 3 Hidradenitis Suppurativa may involve interconnected tunnels, chronic drainage and extensive scarring. These cases usually require careful surgical planning, removal of diseased tissue and reconstruction based on the body area involved.",
+  },
+  {
+    question: "Who performs Hidradenitis Suppurativa surgery?",
+    answer:
+      "Hidradenitis Suppurativa surgery should be planned by an experienced surgical team familiar with excision, wound closure, skin grafts, flap repair and post-operative follow-up. Prof. Dr. Bekir Atik is a Plastic, Reconstructive and Aesthetic Surgery specialist.",
+  },
+  {
     question: "Can HS come back after surgery?",
     answer:
       "When the diseased tissue is removed adequately, recurrence in that exact area may be reduced. However, HS can still appear in other sweat-gland areas of the body, so follow-up and early evaluation of new lesions remain important.",
   },
 ];
 
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
 const journeyIntroCards = [
   {
     label: "Welcome",
     title: "Your treatment journey in Türkiye",
-    text: "Thank you for choosing us for Hidradenitis Suppurativa care in Türkiye. This guide helps you understand each step from travel planning to the post-surgery period.",
+    text: "This guide helps international Hidradenitis Suppurativa patients understand consultation, treatment planning, travel, cost factors, surgery and recovery follow-up.",
   },
   {
     label: "What is Hidradenitis Suppurativa?",
     title: "A chronic inflammatory skin condition",
-    text: "Hidradenitis Suppurativa may cause painful nodules, abscesses and tunnels in areas such as the armpits, groin, buttocks and under the breasts. In advanced cases, surgical treatment can be one of the strongest options for long-term local control.",
+    text: "Hidradenitis Suppurativa may cause painful nodules, abscesses and tunnels in areas such as the armpits, groin, buttocks and under the breasts. In advanced cases, surgery can support long-term local control.",
   },
 ];
 
@@ -279,6 +322,10 @@ export default function EnglishPage() {
       id="top"
       className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(96,165,250,0.22),_transparent_28%),linear-gradient(180deg,_#eff6ff_0%,_#ffffff_46%,_#e0f2fe_100%)] text-slate-950"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
       <DocumentLanguage lang="en" />
       <section className="mx-auto w-full max-w-7xl px-5 pb-3 pt-5 sm:px-8 lg:px-12">
         <header className="rounded-[1.75rem] border border-white/70 bg-white/88 px-4 py-3 shadow-[0_20px_60px_rgba(59,130,246,0.08)] backdrop-blur-md sm:px-5">
@@ -341,7 +388,7 @@ export default function EnglishPage() {
             Hidradenitis Suppurativa
           </p>
           <h1 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
-            Relief is possible with an experienced surgical team in Türkiye.
+            Hidradenitis Suppurativa surgery and specialist care in Türkiye.
           </h1>
         </div>
 
@@ -426,7 +473,7 @@ export default function EnglishPage() {
         showShorts={false}
         copy={{
           eyebrow: "Patient experiences",
-          title: "Patient stories",
+          title: "Hidradenitis Suppurativa patient stories",
           channelCta: "Open channel",
           shortsEyebrow: "Questions and answers",
           shortsTitle: "Short answers with video",
